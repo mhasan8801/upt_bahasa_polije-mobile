@@ -1,12 +1,34 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:upt_bahasa_polije/pages/onboarding_page.dart';
+import 'package:upt_bahasa_polije/pages/started_page.dart';
 
 class SplashPage extends StatefulWidget {
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  State<StatefulWidget> createState() {
+    return StartState();
+  }
 }
 
-class _SplashPageState extends State<SplashPage> {
+class StartState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  startTimer() async {
+    var duration = Duration(seconds: 3);
+    return Timer(duration, route);
+  }
+
+  route() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => GetStartedPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
