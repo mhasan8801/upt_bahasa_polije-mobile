@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:upt_bahasa_polije/pages/signin_page.dart';
 
 class GetStartedPage extends StatelessWidget {
   @override
@@ -71,7 +72,13 @@ class GetStartedPage extends StatelessWidget {
                     width: 200,
                     height: 45,
                     child: OutlineButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignInPages()),
+                        );
+                      },
                       borderSide: BorderSide(color: Colors.white),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(66),
