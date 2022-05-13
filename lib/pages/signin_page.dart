@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:upt_bahasa_polije/theme.dart';
+import 'package:email_validator/email_validator.dart';
 
-class SignInPages extends StatelessWidget {
+class SignInPages extends StatefulWidget {
+  @override
+  State<SignInPages> createState() => _SignInPagesState();
+}
+
+class _SignInPagesState extends State<SignInPages> {
+  bool isEmailValid = true;
+
+  TextEditingController emailController = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +35,7 @@ class SignInPages extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(
-                      'assets/login.png',
+                      'assets/login1.png',
                       width: 262,
                       height: 240,
                     )
@@ -42,7 +51,22 @@ class SignInPages extends StatelessWidget {
                     style: titleTextStyle,
                   ),
                   SizedBox(height: 8),
-                  TextField(
+                  TextFormField(
+                    controller: emailController,
+                    onChanged: (value) {
+                      print(value);
+                      bool isValid = EmailValidator.validate(value);
+                      print(isValid);
+                      if (isValid) {
+                        setState(() {
+                          isEmailValid = true;
+                        });
+                      } else {
+                        setState(() {
+                          isEmailValid = false;
+                        });
+                      }
+                    },
                     decoration: InputDecoration(
                       fillColor: Color(0xffF1F0F5),
                       filled: true,
@@ -52,8 +76,17 @@ class SignInPages extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(100),
-                        borderSide: BorderSide.none,
+                        borderSide: BorderSide(
+                          color: isEmailValid
+                              ? Color(0xff08AFE6)
+                              : Color(0xffFD4F56),
+                        ),
                       ),
+                      hintText: '',
+                    ),
+                    style: TextStyle(
+                      color:
+                          isEmailValid ? Color(0xff272C2F) : Color(0xffFD4F56),
                     ),
                   ),
                 ],
@@ -69,7 +102,8 @@ class SignInPages extends StatelessWidget {
                     style: titleTextStyle,
                   ),
                   SizedBox(height: 8),
-                  TextField(
+                  TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       fillColor: Color(0xffF1F0F5),
                       filled: true,
@@ -79,9 +113,11 @@ class SignInPages extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(100),
-                        borderSide: BorderSide.none,
+                        borderSide: BorderSide(color: Color(0xff08AFE6)),
                       ),
+                      hintText: '',
                     ),
+                    style: TextStyle(color: Color(0xff272C2F)),
                   ),
                 ],
               ),
@@ -107,7 +143,7 @@ class SignInPages extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 5),
+                padding: const EdgeInsets.only(top: 20, bottom: 10),
                 child: Center(
                   child: Text(
                     'Create New Account',
