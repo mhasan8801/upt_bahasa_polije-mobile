@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:upt_bahasa_polije/pages/signin_page.dart';
+import 'package:upt_bahasa_polije/pages/signup_page.dart';
 
 class GetStartedPage extends StatelessWidget {
   @override
@@ -52,7 +53,12 @@ class GetStartedPage extends StatelessWidget {
                         ),
                         backgroundColor: Color(0xffffffff),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                        );
+                      },
                       child: Text(
                         'Get Started',
                         style: GoogleFonts.poppins(
