@@ -1,8 +1,10 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:upt_bahasa_polije/pages/home_page.dart';
 import 'package:upt_bahasa_polije/pages/signin_page.dart';
 import 'package:upt_bahasa_polije/theme.dart';
+import 'package:upt_bahasa_polije/pages/home_page.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -224,7 +226,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(66),
                           )),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
+                      },
                       child: Text(
                         'Sign Up',
                         style: buttonTitleTextStyle,
