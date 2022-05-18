@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:upt_bahasa_polije/pages/onboarding_page.dart';
 import 'package:upt_bahasa_polije/pages/started_page.dart';
 
 class SplashPage extends StatefulWidget {

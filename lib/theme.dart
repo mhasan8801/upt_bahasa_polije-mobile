@@ -22,3 +22,15 @@ TextStyle servicesTitleTextStyle = GoogleFonts.poppins(
 
 TextStyle servicesSubTitleTextStyle = GoogleFonts.poppins(
     color: Color(0xffffffff), fontSize: 16, fontWeight: FontWeight.w400);
+
+TextStyle testTitleTextStyle = GoogleFonts.poppins(
+    color: Color(0xff272C2F), fontSize: 20, fontWeight: FontWeight.w600);
+
+TextStyle subTestTitleTextStyle = GoogleFonts.poppins(
+    color: Color(0xffB3B5C4), fontSize: 14, fontWeight: FontWeight.w400);
+
+TextStyle nbTitle = GoogleFonts.poppins(
+    color: Color(0xff272C2F), fontSize: 14, fontWeight: FontWeight.w500);
+
+TextStyle subNbTitle = GoogleFonts.poppins(
+    color: Color(0xff272C2F), fontSize: 14, fontWeight: FontWeight.w300);
