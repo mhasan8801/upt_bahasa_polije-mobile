@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:upt_bahasa_polije/theme.dart';
+import 'package:upt_bahasa_polije/widgets/news_list.dart';
 import 'package:upt_bahasa_polije/widgets/service_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -55,12 +56,12 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 16,
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 24,
-                ),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 1,
+                  ),
                   child: Row(
                     children: [
                       ServiceCard(
@@ -81,10 +82,49 @@ class HomePage extends StatelessWidget {
                         imageUrl: 'assets/card3.png',
                         text: 'English Proficiency',
                       ),
+                      SizedBox(
+                        width: 20,
+                      )
                     ],
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 1),
+                child: Text('News',
+                    style: GoogleFonts.poppins(
+                      color: Color(0xff272C2F),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15, left: 3),
+                child: NewsList(
+                  newsTitle: 'Placement Test 2022',
+                  dateTitle: '11 August 2022',
+                  imageUrl: 'assets/news1.png',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15, left: 3),
+                child: NewsList(
+                  newsTitle: 'Placement Test 2022',
+                  dateTitle: '11 August 2022',
+                  imageUrl: 'assets/news1.png',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15, left: 3),
+                child: NewsList(
+                  newsTitle: 'Placement Test 2022',
+                  dateTitle: '11 August 2022',
+                  imageUrl: 'assets/news1.png',
+                ),
+              ),
             ],
           ),
         ),

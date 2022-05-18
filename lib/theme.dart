@@ -10,3 +10,9 @@ TextStyle subTitleTextStyle = GoogleFonts.poppins(
 
 TextStyle buttonTitleTextStyle = GoogleFonts.poppins(
     color: Color(0xffffffff), fontSize: 14, fontWeight: FontWeight.w500);
+
+TextStyle newsTitleTextStyle = GoogleFonts.poppins(
+    color: Color(0xff272c2f), fontSize: 16, fontWeight: FontWeight.w500);
+
+TextStyle dateNewsTitleTextStyle = GoogleFonts.poppins(
+    color: Color(0xffB3B5C4), fontSize: 14, fontWeight: FontWeight.w400);
