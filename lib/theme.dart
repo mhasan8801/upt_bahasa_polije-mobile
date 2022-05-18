@@ -16,3 +16,9 @@ TextStyle newsTitleTextStyle = GoogleFonts.poppins(
 
 TextStyle dateNewsTitleTextStyle = GoogleFonts.poppins(
     color: Color(0xffB3B5C4), fontSize: 14, fontWeight: FontWeight.w400);
+
+TextStyle servicesTitleTextStyle = GoogleFonts.poppins(
+    color: Color(0xffffffff), fontSize: 24, fontWeight: FontWeight.w600);
+
+TextStyle servicesSubTitleTextStyle = GoogleFonts.poppins(
+    color: Color(0xffffffff), fontSize: 16, fontWeight: FontWeight.w400);
