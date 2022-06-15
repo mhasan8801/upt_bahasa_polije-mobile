@@ -9,30 +9,32 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget header() {
       return SafeArea(
-        child: Container(
-          padding: EdgeInsets.only(top: 30, left: 24, right: 24),
-          child: Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Hello',
-                    style: titleTextStyle,
-                  ),
-                  Text(
-                    'M. Hasan',
-                    style: subTitleTextStyle,
-                  )
-                ],
-              ),
-              Spacer(),
-              Image.asset(
-                'assets/pic_account.png',
-                width: 58,
-                height: 58,
-              )
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(top: 30, left: 24, right: 24),
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Hello',
+                      style: titleTextStyle,
+                    ),
+                    Text(
+                      'M. Hasan',
+                      style: subTitleTextStyle,
+                    )
+                  ],
+                ),
+                Spacer(),
+                Image.asset(
+                  'assets/pic_account.png',
+                  width: 58,
+                  height: 58,
+                )
+              ],
+            ),
           ),
         ),
       );

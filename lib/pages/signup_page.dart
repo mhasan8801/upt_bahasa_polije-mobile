@@ -12,12 +12,20 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  int _value = 1;
   bool isUploaded = false;
   bool isEmailValid = true;
 
   TextEditingController emailController = TextEditingController(text: '');
 
-  @override
+    List<String> data = [
+      "SMA/SMK",
+      "S1",
+      "S2",
+      "S3",
+    ];
+    
+   @override
   Widget build(BuildContext context) {
     Widget uploadedImages() {
       return Center(
@@ -86,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'NIM',
+                      'Name',
                       style: titleTextStyle,
                     ),
                     SizedBox(height: 8),
@@ -113,11 +121,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Full Name',
+                      'Phone Number',
                       style: titleTextStyle,
                     ),
                     SizedBox(height: 8),
                     TextFormField(
+                      keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         fillColor: Color(0xffF1F0F5),
                         filled: true,
@@ -132,6 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         hintText: '',
                       ),
                       style: TextStyle(color: Color(0xff272C2F)),
+                      
                     ),
                   ],
                 ),
@@ -185,6 +195,157 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ],
                 ),
+                
+                SizedBox(height: 50),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Gender',
+                      style: titleTextStyle,
+                    ),
+                    SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Radio(
+                          value: 1,
+                          activeColor: Colors.blue, 
+                          groupValue: _value,
+                          onChanged: (value){
+                            
+                            setState(() {
+                              
+                            });
+                          },
+                          ),
+                          SizedBox(width: 10.0,),
+                          Text("Male"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Radio(
+                          value: 2,
+                          activeColor: Colors.blue, 
+                          groupValue: _value,
+                          onChanged: (value){
+                            setState(() {
+                              
+                            });
+                          },
+                          ),
+                          SizedBox(width: 10.0,),
+                          Text("Female"),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 50),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Place Of Birth',
+                      style: titleTextStyle,
+                    ),
+                    SizedBox(height: 8),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        fillColor: Color(0xffF1F0F5),
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide(color: Color(0xff08AFE6)),
+                        ),
+                        hintText: '',
+                      ),
+                      style: TextStyle(color: Color(0xff272C2F)),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 50),
+                Column(
+                  
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Date of Birth',
+                      style: titleTextStyle,
+                    ),
+                    SizedBox(height: 8),
+                    TextFormField(
+                      keyboardType: TextInputType.datetime,
+                        decoration: InputDecoration(
+                        fillColor: Color(0xffF1F0F5),
+                        filled: false,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide(color: Color(0xff08AFE6)),
+                        ),
+                        hintText: '',
+                      ),
+                      style: TextStyle(color: Color(0xff272C2F)),
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 50),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Last Education',
+                      style: titleTextStyle,
+                    ),
+                    DropdownButton(
+                      onChanged: (value){
+                        print(value);
+                      },
+                      items: data.map((e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e) ,))
+                        .toList() , 
+                      
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 50),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Address',
+                      style: titleTextStyle,
+                    ),
+                    SizedBox(height: 8),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        fillColor: Color(0xffF1F0F5),
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide(color: Color(0xff08AFE6)),
+                        ),
+                        hintText: '',
+                      ),
+                      style: TextStyle(color: Color(0xff272C2F)),
+                    ),
+                  ],
+                ),
+
                 SizedBox(height: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,6 +374,37 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ],
                 ),
+
+                SizedBox(height: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Confirm Password',
+                      style: titleTextStyle,
+                    ),
+                    SizedBox(height: 8),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        fillColor: Color(0xffF1F0F5),
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide(color: Color(0xff08AFE6)),
+                        ),
+                        hintText: '',
+                      ),
+                      style: TextStyle(color: Color(0xff272C2F)),
+                    ),
+                  ],
+                ),
+                
+                
                 SizedBox(
                   height: 40,
                 ),

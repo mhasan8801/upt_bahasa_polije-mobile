@@ -18,7 +18,7 @@ class GetStartedPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 50, right: 30, left: 30),
+            padding: const EdgeInsets.only(top: 50, right: 30, left: 30,),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
@@ -42,7 +42,7 @@ class GetStartedPage extends StatelessWidget {
               ),
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 430),
+                  padding: const EdgeInsets.only(top: 200),
                   child: Container(
                     width: 200,
                     height: 45,

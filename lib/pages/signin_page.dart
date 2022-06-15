@@ -18,152 +18,154 @@ class _SignInPagesState extends State<SignInPages> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.only(top: 70, left: 24, right: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Sign In',
-                style: titleTextStyle,
-              ),
-              Text(
-                'Build Your Language',
-                style: subTitleTextStyle,
-              ),
-              SizedBox(height: 40),
-              Center(
-                child: Column(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 70, left: 24, right: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Sign In',
+                  style: titleTextStyle,
+                ),
+                Text(
+                  'Build Your Language',
+                  style: subTitleTextStyle,
+                ),
+                SizedBox(height: 40),
+                Center(
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        'assets/login1.png',
+                        width: 262,
+                        height: 240,
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 40),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(
-                      'assets/login1.png',
-                      width: 262,
-                      height: 240,
-                    )
+                    Text(
+                      'Email Address',
+                      style: titleTextStyle,
+                    ),
+                    SizedBox(height: 8),
+                    TextFormField(
+                      controller: emailController,
+                      onChanged: (value) {
+                        print(value);
+                        bool isValid = EmailValidator.validate(value);
+                        print(isValid);
+                        if (isValid) {
+                          setState(() {
+                            isEmailValid = true;
+                          });
+                        } else {
+                          setState(() {
+                            isEmailValid = false;
+                          });
+                        }
+                      },
+                      decoration: InputDecoration(
+                        fillColor: Color(0xffF1F0F5),
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide(
+                            color: isEmailValid
+                                ? Color(0xff08AFE6)
+                                : Color(0xffFD4F56),
+                          ),
+                        ),
+                        hintText: '',
+                      ),
+                      style: TextStyle(
+                        color:
+                            isEmailValid ? Color(0xff272C2F) : Color(0xffFD4F56),
+                      ),
+                    ),
                   ],
                 ),
-              ),
-              SizedBox(height: 40),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Email Address',
-                    style: titleTextStyle,
-                  ),
-                  SizedBox(height: 8),
-                  TextFormField(
-                    controller: emailController,
-                    onChanged: (value) {
-                      print(value);
-                      bool isValid = EmailValidator.validate(value);
-                      print(isValid);
-                      if (isValid) {
-                        setState(() {
-                          isEmailValid = true;
-                        });
-                      } else {
-                        setState(() {
-                          isEmailValid = false;
-                        });
-                      }
-                    },
-                    decoration: InputDecoration(
-                      fillColor: Color(0xffF1F0F5),
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(100),
-                        borderSide: BorderSide.none,
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(100),
-                        borderSide: BorderSide(
-                          color: isEmailValid
-                              ? Color(0xff08AFE6)
-                              : Color(0xffFD4F56),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Password',
+                      style: titleTextStyle,
+                    ),
+                    SizedBox(height: 8),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        fillColor: Color(0xffF1F0F5),
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
                         ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide(color: Color(0xff08AFE6)),
+                        ),
+                        hintText: '',
                       ),
-                      hintText: '',
+                      style: TextStyle(color: Color(0xff272C2F)),
                     ),
-                    style: TextStyle(
-                      color:
-                          isEmailValid ? Color(0xff272C2F) : Color(0xffFD4F56),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Password',
-                    style: titleTextStyle,
-                  ),
-                  SizedBox(height: 8),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      fillColor: Color(0xffF1F0F5),
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(100),
-                        borderSide: BorderSide.none,
+                  ],
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Center(
+                  child: Container(
+                    width: 400,
+                    height: 50,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Color(0xff08AFE6),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(66),
+                          )),
+                      onPressed: () {},
+                      child: Text(
+                        'Sign In',
+                        style: buttonTitleTextStyle,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(100),
-                        borderSide: BorderSide(color: Color(0xff08AFE6)),
-                      ),
-                      hintText: '',
-                    ),
-                    style: TextStyle(color: Color(0xff272C2F)),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Center(
-                child: Container(
-                  width: 400,
-                  height: 50,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                        backgroundColor: Color(0xff08AFE6),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(66),
-                        )),
-                    onPressed: () {},
-                    child: Text(
-                      'Sign In',
-                      style: buttonTitleTextStyle,
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Center(
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()),
-                      );
-                    },
-                    child: Text(
-                      'Create New Account',
-                      style: GoogleFonts.poppins(
-                          color: Color(0xffB3B5C4),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w300),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 20),
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                        );
+                      },
+                      child: Text(
+                        'Create New Account',
+                        style: GoogleFonts.poppins(
+                            color: Color(0xffB3B5C4),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300),
+                      ),
                     ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
