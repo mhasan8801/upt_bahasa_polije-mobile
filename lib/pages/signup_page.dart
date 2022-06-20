@@ -56,6 +56,10 @@ class _SignUpPageState extends State<SignUpPage> {
         email: emailController.text,
         address: addressController.text,
         password: passwordController.text,
+        gender: passwordController.text,
+        place_of_birth: passwordController.text,
+        date_of_birth: passwordController.text,
+        last_education: passwordController.text,
       )) {
         Navigator.pushNamed(context, '/home');
       } else {
