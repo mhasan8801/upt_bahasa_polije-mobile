@@ -34,3 +34,6 @@ TextStyle nbTitle = GoogleFonts.poppins(
 
 TextStyle subNbTitle = GoogleFonts.poppins(
     color: Color(0xff272C2F), fontSize: 14, fontWeight: FontWeight.w300);
+
+Color alertColor = Color(0xffED6363);
+Color primaryTextColor = Color(0xff272C2F);

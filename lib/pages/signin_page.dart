@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:upt_bahasa_polije/pages/home_page.dart';
 import 'package:upt_bahasa_polije/pages/signup_page.dart';
+import 'package:upt_bahasa_polije/provider/auth_provider.dart';
 import 'package:upt_bahasa_polije/theme.dart';
 import 'package:email_validator/email_validator.dart';
 
@@ -13,8 +16,41 @@ class _SignInPagesState extends State<SignInPages> {
   bool isEmailValid = true;
 
   TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
+
+  bool isLoading = true;
+
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignIn() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await authProvider.login(
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal Login!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -87,8 +123,9 @@ class _SignInPagesState extends State<SignInPages> {
                         hintText: '',
                       ),
                       style: TextStyle(
-                        color:
-                            isEmailValid ? Color(0xff272C2F) : Color(0xffFD4F56),
+                        color: isEmailValid
+                            ? Color(0xff272C2F)
+                            : Color(0xffFD4F56),
                       ),
                     ),
                   ],
@@ -105,6 +142,7 @@ class _SignInPagesState extends State<SignInPages> {
                     ),
                     SizedBox(height: 8),
                     TextFormField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         fillColor: Color(0xffF1F0F5),
@@ -136,7 +174,7 @@ class _SignInPagesState extends State<SignInPages> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(66),
                           )),
-                      onPressed: () {},
+                      onPressed: handleSignIn,
                       child: Text(
                         'Sign In',
                         style: buttonTitleTextStyle,

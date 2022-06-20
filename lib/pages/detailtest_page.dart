@@ -31,7 +31,7 @@ class DetailTest extends StatelessWidget {
               height: 30,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24),
+              padding: const EdgeInsets.only(left: 15.0, right: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -1,10 +1,10 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:upt_bahasa_polije/pages/home_page.dart';
+import 'package:provider/provider.dart';
 import 'package:upt_bahasa_polije/pages/signin_page.dart';
+import 'package:upt_bahasa_polije/provider/auth_provider.dart';
 import 'package:upt_bahasa_polije/theme.dart';
-import 'package:upt_bahasa_polije/pages/home_page.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -16,17 +16,55 @@ class _SignUpPageState extends State<SignUpPage> {
   bool isUploaded = false;
   bool isEmailValid = true;
 
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController phoneController = TextEditingController(text: '');
   TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController addressController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
 
-    List<String> data = [
-      "SMA/SMK",
-      "S1",
-      "S2",
-      "S3",
-    ];
-    
-   @override
+  bool isLoading = false;
+
+  List<String> data = [
+    "SMA/SMK",
+    "S1",
+    "S2",
+    "S3",
+  ];
+
+  @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignUp() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await authProvider.register(
+        name: nameController.text,
+        phone: phoneController.text,
+        email: emailController.text,
+        address: addressController.text,
+        password: passwordController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal Register!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     Widget uploadedImages() {
       return Center(
         child: InkWell(
@@ -99,6 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     SizedBox(height: 8),
                     TextFormField(
+                      controller: nameController,
                       decoration: InputDecoration(
                         fillColor: Color(0xffF1F0F5),
                         filled: true,
@@ -126,6 +165,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     SizedBox(height: 8),
                     TextFormField(
+                      controller: phoneController,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         fillColor: Color(0xffF1F0F5),
@@ -141,7 +181,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         hintText: '',
                       ),
                       style: TextStyle(color: Color(0xff272C2F)),
-                      
                     ),
                   ],
                 ),
@@ -195,130 +234,130 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ],
                 ),
-                
-                SizedBox(height: 50),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Gender',
-                      style: titleTextStyle,
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Radio(
-                          value: 1,
-                          activeColor: Colors.blue, 
-                          groupValue: _value,
-                          onChanged: (value){
-                            
-                            setState(() {
-                              
-                            });
-                          },
-                          ),
-                          SizedBox(width: 10.0,),
-                          Text("Male"),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Radio(
-                          value: 2,
-                          activeColor: Colors.blue, 
-                          groupValue: _value,
-                          onChanged: (value){
-                            setState(() {
-                              
-                            });
-                          },
-                          ),
-                          SizedBox(width: 10.0,),
-                          Text("Female"),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: 50),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Place Of Birth',
-                      style: titleTextStyle,
-                    ),
-                    SizedBox(height: 8),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        fillColor: Color(0xffF1F0F5),
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide(color: Color(0xff08AFE6)),
-                        ),
-                        hintText: '',
-                      ),
-                      style: TextStyle(color: Color(0xff272C2F)),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 50),
-                Column(
-                  
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Date of Birth',
-                      style: titleTextStyle,
-                    ),
-                    SizedBox(height: 8),
-                    TextFormField(
-                      keyboardType: TextInputType.datetime,
-                        decoration: InputDecoration(
-                        fillColor: Color(0xffF1F0F5),
-                        filled: false,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide(color: Color(0xff08AFE6)),
-                        ),
-                        hintText: '',
-                      ),
-                      style: TextStyle(color: Color(0xff272C2F)),
-                    ),
-                  ],
-                ),
 
-                SizedBox(height: 50),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Last Education',
-                      style: titleTextStyle,
-                    ),
-                    DropdownButton(
-                      onChanged: (value){
-                        print(value);
-                      },
-                      items: data.map((e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(e) ,))
-                        .toList() , 
-                      
-                    ),
-                  ],
-                ),
+                SizedBox(height: 20),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       'Gender',
+                //       style: titleTextStyle,
+                //     ),
+                //     SizedBox(height: 8),
+                //     Row(
+                //       children: [
+                //         Radio(
+                //           value: 1,
+                //           activeColor: Colors.blue,
+                //           groupValue: _value,
+                //           onChanged: (value){
 
-                SizedBox(height: 50),
+                //             setState(() {
+
+                //             });
+                //           },
+                //           ),
+                //           SizedBox(width: 10.0,),
+                //           Text("Male"),
+                //       ],
+                //     ),
+                //     Row(
+                //       children: [
+                //         Radio(
+                //           value: 2,
+                //           activeColor: Colors.blue,
+                //           groupValue: _value,
+                //           onChanged: (value){
+                //             setState(() {
+
+                //             });
+                //           },
+                //           ),
+                //           SizedBox(width: 10.0,),
+                //           Text("Female"),
+                //       ],
+                //     ),
+                //   ],
+                // ),
+                // SizedBox(height: 50),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       'Place Of Birth',
+                //       style: titleTextStyle,
+                //     ),
+                //     SizedBox(height: 8),
+                //     TextFormField(
+                //       decoration: InputDecoration(
+                //         fillColor: Color(0xffF1F0F5),
+                //         filled: true,
+                //         enabledBorder: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(100),
+                //           borderSide: BorderSide.none,
+                //         ),
+                //         focusedBorder: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(100),
+                //           borderSide: BorderSide(color: Color(0xff08AFE6)),
+                //         ),
+                //         hintText: '',
+                //       ),
+                //       style: TextStyle(color: Color(0xff272C2F)),
+                //     ),
+                //   ],
+                // ),
+                // SizedBox(height: 50),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       'Date of Birth',
+                //       style: titleTextStyle,
+                //     ),
+                //     SizedBox(height: 8),
+                //     TextFormField(
+                //       keyboardType: TextInputType.datetime,
+                //       decoration: InputDecoration(
+                //         fillColor: Color(0xffF1F0F5),
+                //         filled: false,
+                //         enabledBorder: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(100),
+                //           borderSide: BorderSide.none,
+                //         ),
+                //         focusedBorder: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(100),
+                //           borderSide: BorderSide(color: Color(0xff08AFE6)),
+                //         ),
+                //         hintText: '',
+                //       ),
+                //       style: TextStyle(color: Color(0xff272C2F)),
+                //     ),
+                //   ],
+                // ),
+
+                // SizedBox(height: 50),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       'Last Education',
+                //       style: titleTextStyle,
+                //     ),
+                //     DropdownButton(
+                //       onChanged: (value) {
+                //         print(value);
+                //       },
+                //       items: data
+                //           .map((e) => DropdownMenuItem(
+                //                 value: e,
+                //                 child: Text(e),
+                //               ))
+                //           .toList(),
+                //     ),
+                //   ],
+                // ),
+
+                // SizedBox(height: 50),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -328,6 +367,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     SizedBox(height: 8),
                     TextFormField(
+                      controller: addressController,
                       decoration: InputDecoration(
                         fillColor: Color(0xffF1F0F5),
                         filled: true,
@@ -356,6 +396,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     SizedBox(height: 8),
                     TextFormField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         fillColor: Color(0xffF1F0F5),
@@ -375,36 +416,35 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ),
 
-                SizedBox(height: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Confirm Password',
-                      style: titleTextStyle,
-                    ),
-                    SizedBox(height: 8),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        fillColor: Color(0xffF1F0F5),
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide(color: Color(0xff08AFE6)),
-                        ),
-                        hintText: '',
-                      ),
-                      style: TextStyle(color: Color(0xff272C2F)),
-                    ),
-                  ],
-                ),
-                
-                
+                // SizedBox(height: 20),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       'Confirm Password',
+                //       style: titleTextStyle,
+                //     ),
+                //     SizedBox(height: 8),
+                //     TextFormField(
+                //       obscureText: true,
+                //       decoration: InputDecoration(
+                //         fillColor: Color(0xffF1F0F5),
+                //         filled: true,
+                //         enabledBorder: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(100),
+                //           borderSide: BorderSide.none,
+                //         ),
+                //         focusedBorder: OutlineInputBorder(
+                //           borderRadius: BorderRadius.circular(100),
+                //           borderSide: BorderSide(color: Color(0xff08AFE6)),
+                //         ),
+                //         hintText: '',
+                //       ),
+                //       style: TextStyle(color: Color(0xff272C2F)),
+                //     ),
+                //   ],
+                // ),
+
                 SizedBox(
                   height: 40,
                 ),
@@ -418,12 +458,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(66),
                           )),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                        );
-                      },
+                      onPressed: handleSignUp,
                       child: Text(
                         'Sign Up',
                         style: buttonTitleTextStyle,

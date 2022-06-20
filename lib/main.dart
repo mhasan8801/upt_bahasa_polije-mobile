@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:upt_bahasa_polije/pages/home_page.dart';
+import 'package:upt_bahasa_polije/pages/signin_page.dart';
+import 'package:upt_bahasa_polije/pages/signup_page.dart';
+import 'package:upt_bahasa_polije/provider/auth_provider.dart';
 import 'pages/splash_page.dart';
 
 void main() => runApp(MyApp());
@@ -6,11 +11,21 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => SplashPage(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/': (context) => SplashPage(),
+          '/home': (context) => HomePage(),
+          '/sign-in': (context) => SignInPages(),
+          '/sign-up': (context) => SignUpPage(),
+        },
+      ),
     );
   }
 }
