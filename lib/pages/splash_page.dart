@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:upt_bahasa_polije/pages/started_page.dart';
-import 'package:upt_bahasa_polije/provider/news_prodiver.dart';
+import 'package:upt_bahasa_polije/provider/news_provider.dart';
+import 'package:upt_bahasa_polije/provider/service_provider.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -24,6 +25,7 @@ class StartState extends State<SplashPage> {
 
   getInit() async {
     await Provider.of<NewsProvider>(context, listen: false).getNews();
+    await Provider.of<ServiceProvider>(context, listen: false).getService();
     Navigator.pushNamed(context, '/started-page');
   }
 

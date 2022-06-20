@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:upt_bahasa_polije/provider/news_prodiver.dart';
+import 'package:upt_bahasa_polije/provider/news_provider.dart';
 import 'package:upt_bahasa_polije/theme.dart';
 import 'package:upt_bahasa_polije/widgets/news_list.dart';
 import 'package:upt_bahasa_polije/widgets/service_card.dart';
