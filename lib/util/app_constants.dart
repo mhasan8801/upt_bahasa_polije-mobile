@@ -1,3 +1,3 @@
 class AppConstants {
-  static String baseUrl = 'http://192.168.0.161/api';
+  static String baseUrl = 'https://ws-tif.com/upt-bahasa-polije/api';
 }

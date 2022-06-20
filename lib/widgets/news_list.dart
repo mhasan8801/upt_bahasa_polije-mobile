@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:upt_bahasa_polije/models/news_model.dart';
 import 'package:upt_bahasa_polije/pages/detailtest_page.dart';
 import 'package:upt_bahasa_polije/theme.dart';
 
 class NewsList extends StatelessWidget {
-  final String newsTitle;
-  final String dateTitle;
-  final String imageUrl;
+  final NewsModel newz;
+  NewsList(this.newz);
 
-  NewsList(
-      {required this.newsTitle,
-      required this.dateTitle,
-      required this.imageUrl});
+  late String newsTitle;
+  late String authorNews;
+  late String imageUrl;
+
+  // NewsList(
+  //     {required this.newsTitle,
+  //     required this.authorNews,
+  //     required this.imageUrl});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -27,7 +31,7 @@ class NewsList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
-            imageUrl,
+            newz.picture.toString(),
             width: 45,
             height: 45,
           ),
@@ -39,11 +43,11 @@ class NewsList extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  newsTitle,
+                  newz.headline_news.toString(),
                   style: newsTitleTextStyle,
                 ),
                 Text(
-                  dateTitle,
+                  newz.author.toString(),
                   style: dateNewsTitleTextStyle,
                 ),
                 SizedBox(

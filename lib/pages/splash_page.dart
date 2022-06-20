@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:upt_bahasa_polije/pages/started_page.dart';
+import 'package:upt_bahasa_polije/provider/news_prodiver.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -14,8 +16,15 @@ class SplashPage extends StatefulWidget {
 class StartState extends State<SplashPage> {
   @override
   void initState() {
+    getInit();
+
     super.initState();
     startTimer();
+  }
+
+  getInit() async {
+    await Provider.of<NewsProvider>(context, listen: false).getNews();
+    Navigator.pushNamed(context, '/started-page');
   }
 
   startTimer() async {

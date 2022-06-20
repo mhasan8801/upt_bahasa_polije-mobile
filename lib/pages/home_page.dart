@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:upt_bahasa_polije/provider/news_prodiver.dart';
 import 'package:upt_bahasa_polije/theme.dart';
 import 'package:upt_bahasa_polije/widgets/news_list.dart';
 import 'package:upt_bahasa_polije/widgets/service_card.dart';
@@ -7,6 +9,8 @@ import 'package:upt_bahasa_polije/widgets/service_card.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    NewsProvider newsProvider = Provider.of<NewsProvider>(context);
+
     Widget header() {
       return SafeArea(
         child: SingleChildScrollView(
@@ -103,29 +107,12 @@ class HomePage extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     )),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 3),
-                child: NewsList(
-                  newsTitle: 'Placement Test 2022',
-                  dateTitle: '11 August 2022',
-                  imageUrl: 'assets/news1.png',
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 3),
-                child: NewsList(
-                  newsTitle: 'Placement Test 2022',
-                  dateTitle: '11 August 2022',
-                  imageUrl: 'assets/news1.png',
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 3),
-                child: NewsList(
-                  newsTitle: 'Placement Test 2022',
-                  dateTitle: '11 August 2022',
-                  imageUrl: 'assets/news1.png',
-                ),
+              Column(
+                children: newsProvider.news
+                    .map(
+                      (newz) => NewsList(newz),
+                    )
+                    .toList(),
               ),
             ],
           ),

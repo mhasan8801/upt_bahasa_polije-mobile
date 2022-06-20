@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:upt_bahasa_polije/provider/news_prodiver.dart';
 import 'package:upt_bahasa_polije/theme.dart';
 import 'package:upt_bahasa_polije/widgets/news_list.dart';
 
 class SecondHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    NewsProvider newsProvider = Provider.of<NewsProvider>(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -71,31 +75,11 @@ class SecondHomePage extends StatelessWidget {
                         height: 16,
                       ),
                       Column(
-                        children: [
-                          NewsList(
-                            newsTitle: 'Placement Test Juli 2022',
-                            dateTitle: 'Adriadi Novawan, S.Pd., M.Pd',
-                            imageUrl: 'assets/news1.png',
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          NewsList(
-                            newsTitle: 'Placement Test Juli 2022',
-                            dateTitle: 'Adriadi Novawan, S.Pd., M.Pd',
-                            imageUrl: 'assets/news1.png',
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          NewsList(
-                            newsTitle: 'Placement Test Juli 2022',
-                            dateTitle: 'Adriadi Novawan, S.Pd., M.Pd',
-                            imageUrl: 'assets/news1.png',
-                          ),
-                        ],
+                        children: newsProvider.news
+                            .map(
+                              (newz) => NewsList(newz),
+                            )
+                            .toList(),
                       ),
                     ],
                   ),

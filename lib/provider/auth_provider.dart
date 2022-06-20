@@ -16,6 +16,10 @@ class AuthProvider with ChangeNotifier {
     String? name,
     String? phone,
     String? email,
+    String? gender,
+    String? place_of_birth,
+    String? date_of_birth,
+    String? last_education,
     String? address,
     String? password,
   }) async {
@@ -24,6 +28,10 @@ class AuthProvider with ChangeNotifier {
         name: name,
         phone: phone,
         email: email,
+        gender: gender,
+        place_of_birth: place_of_birth,
+        date_of_birth: date_of_birth,
+        last_education: last_education,
         address: address,
         password: password,
       );
@@ -35,15 +43,10 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> login({
-    String? email,
-    String? password,
-  }) async {
+  Future<bool> login({String? email, String? password}) async {
     try {
-      UserModel user = await AuthService().login(
-        email: email,
-        password: password,
-      );
+      UserModel user =
+          await AuthService().login(email: email, password: password);
       _user = user;
       return true;
     } catch (e) {

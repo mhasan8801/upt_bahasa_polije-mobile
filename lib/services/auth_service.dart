@@ -11,6 +11,10 @@ class AuthService {
     String? name,
     String? phone,
     String? email,
+    String? gender,
+    String? place_of_birth,
+    String? date_of_birth,
+    String? last_education,
     String? address,
     String? password,
   }) async {
@@ -20,6 +24,10 @@ class AuthService {
       'name': name,
       'phone': phone,
       'email': email,
+      'gender': gender,
+      'place_of_birth': place_of_birth,
+      'date_of_birth': date_of_birth,
+      'last_education': last_education,
       'address': address,
       'password': password,
     });
@@ -60,7 +68,7 @@ class AuthService {
       body: body,
     );
 
-    print(response.body);
+    // print(response.body);
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
